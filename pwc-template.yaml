@@ -1,0 +1,106 @@
+substitutions:
+  version: "0.5"
+defaults:
+  # Plant Watering Controller Number
+  pwc_num: "0"
+  
+  # Plant Names
+  plant1: Plant $pwc_num-1
+  plant2: Plant $pwc_num-2
+  plant3: Plant $pwc_num-3
+  plant4: Plant $pwc_num-4
+  
+  # Plant Watering Times
+  p1_time: "1 min"
+  p2_time: "1 min"
+  p3_time: "1 min"
+  p4_time: "1 min"
+
+esphome:
+  name: pwc$pwc_num
+  friendly_name: Plant Watering Controller $pwc_num
+  project:
+    name: boozer2.Plant Watering Controller
+    version: $version
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+ota:
+  password: "b92278e9aba03942ed310054cc666479"
+
+wifi:
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "PWC${pwc_num} Fallback Hotspot"
+    password: "xvQA2w6dlf83"
+
+captive_portal:
+    
+switch:
+  - platform: gpio
+    pin: 
+      number: GPIO32
+    name: $plant1 Watering
+    id: Plant1_Relay
+    icon: "mdi:water"
+    on_turn_on:
+    - logger.log: "${plant1} Pump Turned On!"
+    - delay: $p1_time
+    - switch.turn_off: Plant1_Relay
+    - logger.log: "${plant1} Pump Turned Off!"
+  - platform: gpio
+    pin: 
+      number: GPIO33
+    name: $plant2 Watering
+    id: Plant2_Relay
+    icon: "mdi:water"
+    on_turn_on:
+      - logger.log: "${plant2} Pump Turned On!"
+      - delay: $p2_time
+      - switch.turn_off: Plant2_Relay
+      - logger.log: "${plant2} Pump Turned Off!"
+  - platform: gpio
+    pin: 
+      number: GPIO25
+    name: $plant3 Watering
+    id: Plant3_Relay
+    icon: "mdi:water"
+    on_turn_on:
+    - logger.log: "${plant3} Pump Turned On!"
+    - delay: $p3_time
+    - switch.turn_off: Plant3_Relay
+    - logger.log: "${plant3} Pump Turned Off!"
+  - platform: gpio
+    pin: 
+      number: GPIO26
+    name: $plant4 Watering
+    id: Plant4_Relay    
+    icon: "mdi:water"
+    on_turn_on:
+    - logger.log: "${plant4} Pump Turned On!"
+    - delay: $p4_time
+    - switch.turn_off: Plant4_Relay
+    - logger.log: "${plant4} Pump Turned Off!"
+sensor:
+  - platform: adc
+    pin: GPIO34
+    name: $plant1 Moisture
+    update_interval: 30s
+  - platform: adc
+    pin: GPIO35
+    name: $plant2 Moisture
+    update_interval: 30s
+  - platform: adc
+    pin: GPIO36
+    name: $plant3 Moisture
+    update_interval: 30s
+  - platform: adc
+    pin: GPIO39
+    name: $plant4 Moisture
+    update_interval: 30s
