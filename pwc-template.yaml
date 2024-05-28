@@ -1,6 +1,5 @@
 substitutions:
   version: "0.5"
-#defaults:
   # Plant Watering Controller Number
   pwc_num: "0"
   
