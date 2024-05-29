@@ -1,12 +1,4 @@
 substitutions:
-#  # Plant Watering Controller Number
-#  pwc_num: "99"
-    
-  # Plant Names
-#  plant1: Plant ${pwc_num}-1
-#  plant2: Plant ${pwc_num}-2
-#  plant3: Plant ${pwc_num}-3
-#  plant4: Plant ${pwc_num}-4
   plant1: Plant 1
   plant2: Plant 2
   plant3: Plant 3
@@ -23,4 +15,4 @@ packages:
 
 dashboard_import:
   package_import_url: github://boozer2/pwc/pwc-template.yaml
-  import_full_config: false
+  import_full_config: true
