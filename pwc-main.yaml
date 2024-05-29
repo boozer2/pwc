@@ -39,7 +39,8 @@ ota:
 wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "PWC${pwc_num} Fallback Hotspot"
+#    ssid: "PWC${pwc_num} Fallback Hotspot"
+    ssid: "PWC Fallback Hotspot"
     password: "xvQA2w6dlf83"
 
 captive_portal:
