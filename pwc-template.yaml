@@ -15,7 +15,7 @@ substitutions:
   p4_time: "1 min"
     
 packages:
-  pwc: github://boozer2/pwc/pwc-main.yaml@main
+  pwc: !include pwc-main.yaml
 
 dashboard_import:
   package_import_url: github://boozer2/pwc/pwc-template.yaml@main
