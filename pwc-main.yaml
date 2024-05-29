@@ -22,7 +22,7 @@ esphome:
   friendly_name: Plant Watering Controller
   name_add_mac_suffix: true
   project:
-    name: boozer2.Plant Watering Controller
+    name: boozer2.pwc
     version: $version
 
 esp32:
