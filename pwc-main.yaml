@@ -18,6 +18,7 @@ substitutions:
 esphome:
   name: pwc$pwc_num
   friendly_name: Plant Watering Controller $pwc_num
+  name_add_mac_suffix: true
   project:
     name: boozer2.Plant Watering Controller
     version: $version
