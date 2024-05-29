@@ -20,7 +20,8 @@ esphome:
 #  friendly_name: Plant Watering Controller $pwc_num
   name: pwc
   friendly_name: Plant Watering Controller
-  name_add_mac_suffix: true
+#  name_add_mac_suffix: true
+  name_add_mac_suffix: false
   project:
     name: boozer2.pwc
     version: $version
