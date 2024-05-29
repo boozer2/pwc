@@ -1,23 +1,25 @@
 substitutions:
   version: "0.5"
-  # Plant Watering Controller Number
-  pwc_num: "0"
+#  # Plant Watering Controller Number
+#  pwc_num: "0"
+
+#  # Plant Names
+#  plant1: Plant $pwc_num-1
+#  plant2: Plant $pwc_num-2
+#  plant3: Plant $pwc_num-3
+#  plant4: Plant $pwc_num-4
   
-  # Plant Names
-  plant1: Plant $pwc_num-1
-  plant2: Plant $pwc_num-2
-  plant3: Plant $pwc_num-3
-  plant4: Plant $pwc_num-4
-  
-  # Plant Watering Times
-  p1_time: "1 min"
-  p2_time: "1 min"
-  p3_time: "1 min"
-  p4_time: "1 min"
+#  # Plant Watering Times
+#  p1_time: "1 min"
+#  p2_time: "1 min"
+#  p3_time: "1 min"
+#  p4_time: "1 min"
 
 esphome:
-  name: pwc$pwc_num
-  friendly_name: Plant Watering Controller $pwc_num
+#  name: pwc$pwc_num
+#  friendly_name: Plant Watering Controller $pwc_num
+  name: pwc
+  friendly_name: Plant Watering Controller
   name_add_mac_suffix: true
   project:
     name: boozer2.Plant Watering Controller
