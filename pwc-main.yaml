@@ -1,5 +1,8 @@
 substitutions:
   version: "0.5"
+  name: "pwc"
+  friendly_name: "Plant Watering Controller"
+
 #  # Plant Watering Controller Number
 #  pwc_num: "0"
 
@@ -18,10 +21,9 @@ substitutions:
 esphome:
 #  name: pwc$pwc_num
 #  friendly_name: Plant Watering Controller $pwc_num
-  name: pwc
-  friendly_name: Plant Watering Controller
+  name: "${name}"
+  friendly_name: "${friendly_name}"
   name_add_mac_suffix: true
-#  name_add_mac_suffix: false
   project:
     name: boozer2.pwc
     version: $version
