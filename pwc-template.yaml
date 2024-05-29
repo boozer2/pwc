@@ -18,5 +18,5 @@ packages:
   pwc: !include pwc-main.yaml
 
 dashboard_import:
-  package_import_url: github://boozer2/pwc/pwc-template.yaml@main
+  package_import_url: github://boozer2/pwc/pwc-template.yaml
   import_full_config: false
