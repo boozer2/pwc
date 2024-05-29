@@ -16,3 +16,7 @@ substitutions:
     
 packages:
   pwc: github://boozer2/pwc/pwc-main.yaml@main
+
+dashboard_import:
+  package_import_url: github://boozer2/pwc/pwc-template.yaml@main
+  import_full_config: false
