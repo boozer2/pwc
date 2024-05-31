@@ -32,6 +32,11 @@ captive_portal:
     
 switch:
   - platform: gpio
+    pin:
+      number: GPIO23
+    name: LED
+    id: led
+  - platform: gpio
     pin: 
       number: GPIO32
     name: $plant1 Watering
