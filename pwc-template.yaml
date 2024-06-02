@@ -13,18 +13,5 @@ substitutions:
   p3_time: "1 min"
   p4_time: "1 min"
 
-esphome:
-  name: pwc$pwc_num
-  friendly_name: Plant Watering Controller $pwc_num
-  project:
-    name: boozer2.Plant Watering Controller
-    version: $version
-
-wifi:
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: "PWC${pwc_num} Fallback Hotspot"
-    password: "xvQA2w6dlf83"
-
 packages:
   pwc: github://boozer2/pwc/pwc-main.yaml
