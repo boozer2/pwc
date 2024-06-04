@@ -95,8 +95,12 @@ switch:
     - switch.turn_off: Plant4_Relay
     - logger.log: "${plant4} Pump Turned Off!"
 sensor:
+  - platform: internal_temperature
+    name: "Internal Temperature"
   - platform: uptime
     name: Uptime
+  - platform: wifi_signal
+    name: WiFi Signal dB
   - platform: adc
     pin: GPIO34
     name: $plant1 Moisture
@@ -113,3 +117,7 @@ sensor:
     pin: GPIO39
     name: $plant4 Moisture
     update_interval: 30s
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    
