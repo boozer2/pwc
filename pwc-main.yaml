@@ -33,8 +33,9 @@ esp32:
 # Enable logging
 logger:
 
-ota:
-  password: "b92278e9aba03942ed310054cc666479"
+# Will have unique OTA for each device
+#ota:
+#  password: "b92278e9aba03942ed310054cc666479"
 
 wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
