@@ -95,6 +95,8 @@ switch:
     - switch.turn_off: Plant4_Relay
     - logger.log: "${plant4} Pump Turned Off!"
 sensor:
+  - platform: uptime
+    name: Uptime
   - platform: adc
     pin: GPIO34
     name: $plant1 Moisture
