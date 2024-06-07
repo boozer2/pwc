@@ -1,0 +1,29 @@
+#plant_name
+#watering_gpio
+#watering_time
+#plant_num
+
+#plant_name
+#moisture_sensor_gpio
+
+defaults:
+  plant_name: Plant $pwc_num-$plant_num
+
+switch:
+  - platform: gpio
+    pin: 
+      number: ${watering_gpio}
+    name: ${plant_name} Watering
+    id: Plant${plant_num}_relay
+    icon: "mdi:water"
+    on_turn_on:
+    - logger.log: "${plant_name} Pump Turned On!"
+    - delay: $watering_time
+    - switch.turn_off: Plant${plant_num}_relay
+    - logger.log: "${plant_name} Pump Turned Off!"
+
+sensor:
+  - platform: adc
+    pin: ${moisture_sensor_gpio}
+    name: ${plant_name} Moisture
+    update_interval: 30s
