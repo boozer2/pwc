@@ -127,7 +127,7 @@ packages:
         plant_name: ${plant1}
         watering_gpio: GPIO32
         moisture_sensor_gpio: GPIO34
-        watering_time: $p1_time
+#        watering_time: $p1_time
         plant_num: 1
   plant2_relay: !include
       file: plant.yaml
@@ -135,7 +135,7 @@ packages:
         plant_name: ${plant2}
         watering_gpio: GPIO33
         moisture_sensor_gpio: GPIO35
-        watering_time: $p2_time
+#        watering_time: $p2_time
         plant_num: 2
   plant3_relay: !include
       file: plant.yaml
@@ -143,7 +143,7 @@ packages:
         plant_name: ${plant3}
         watering_gpio: GPIO25
         moisture_sensor_gpio: GPIO36
-        watering_time: $p3_time
+#        watering_time: $p3_time
         plant_num: 3
   plant4_relay: !include
       file: plant.yaml
@@ -151,5 +151,5 @@ packages:
         plant_name: ${plant4}
         watering_gpio: GPIO26
         moisture_sensor_gpio: GPIO39
-        watering_time: $p4_time
+#        watering_time: $p4_time
         plant_num: 4
