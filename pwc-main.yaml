@@ -137,7 +137,7 @@ packages:
         moisture_sensor_gpio: GPIO35
         watering_time: $p2_time
         plant_num: 2
-  plant1_relay: !include
+  plant3_relay: !include
       file: plant.yaml
       vars:
         plant_name: ${plant3}
@@ -145,7 +145,7 @@ packages:
         moisture_sensor_gpio: GPIO36
         watering_time: $p3_time
         plant_num: 3
-  plant1_relay: !include
+  plant4_relay: !include
       file: plant.yaml
       vars:
         plant_name: ${plant4}
