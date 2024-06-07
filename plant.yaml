@@ -9,8 +9,8 @@ substitutions:
   min_water_time: "1"
   max_water_time: "3600"
   moisture_update_interval: 30s
-  plant_valve_id: p${plant_num}_relay
-  plant_water_time_id: p${plant_num}_water_time
+#  plant_valve_id: p${plant_num}_relay
+#  plant_water_time_id: p${plant_num}_water_time
 
 defaults:
   plant_name: Plant $pwc_num-$plant_num
