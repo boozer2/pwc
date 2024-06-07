@@ -20,13 +20,13 @@ switch:
     pin: 
       number: ${watering_gpio}
     name: ${plant_name} Watering
-    id: ${plant_valve_id}
+    id: p${plant_num}_relay
     icon: "mdi:water"
     on_turn_on:
     - logger.log: "${plant_name} Pump Turned On!"
 #    - delay: $watering_time
-    - delay: !lambda "return id($plant_water_time_id).state * 1000;"
-    - switch.turn_off: ${plant_valve_id}
+    - delay: !lambda "return id(p${plant_num}_water_time).state * 1000;"
+    - switch.turn_off: p${plant_num}_relay
     - logger.log: "${plant_name} Pump Turned Off!"
 
 sensor:
@@ -38,7 +38,7 @@ sensor:
 number:
   - platform: template
     name: "${plant_name} Watering Time"
-    id: $plant_water_time_id
+    id: p${plant_num}_water_time
     icon: "mdi:timer"
     entity_category: config
     unit_of_measurement: "sec"
