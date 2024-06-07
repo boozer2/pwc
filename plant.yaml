@@ -47,3 +47,5 @@ number:
     step: 1
     optimistic: True
     restore_value: True
+    initial_value: 60
+    
