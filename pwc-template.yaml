@@ -1,4 +1,5 @@
 substitutions:
+  # Plant Watering Controller Number
   pwc_num: "0"
 
   # Plant Names
@@ -7,11 +8,9 @@ substitutions:
   plant3: Plant $pwc_num-3
   plant4: Plant $pwc_num-4
 
-  # Plant Watering Times
-  p1_time: "1 min"
-  p2_time: "1 min"
-  p3_time: "1 min"
-  p4_time: "1 min"
-
 packages:
-  pwc: github://boozer2/pwc/pwc-main.yaml
+  pwc: 
+    url: https://github.com/boozer2/pwc
+    ref: main
+    file: pwc-main.yaml
+    refresh: 1s
