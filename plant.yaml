@@ -1,16 +1,14 @@
+# Requried variables:
 #plant_name
+#plant_num
 #watering_gpio
 #watering_time
-#plant_num
-
-#plant_name
 #moisture_sensor_gpio
+
 substitutions:
   min_water_time: "1"
   max_water_time: "3600"
   moisture_update_interval: 30s
-#  plant_valve_id: p${plant_num}_relay
-#  plant_water_time_id: p${plant_num}_water_time
 
 defaults:
   plant_name: Plant $pwc_num-$plant_num
@@ -24,7 +22,6 @@ switch:
     icon: "mdi:water"
     on_turn_on:
     - logger.log: "${plant_name} Pump Turned On!"
-#    - delay: $watering_time
     - delay: !lambda "return id(p${plant_num}_water_time).state * 1000;"
     - switch.turn_off: p${plant_num}_relay
     - logger.log: "${plant_name} Pump Turned Off!"
