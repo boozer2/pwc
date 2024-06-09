@@ -7,12 +7,6 @@ substitutions:
 #  plant3: Plant $pwc_num-3
 #  plant4: Plant $pwc_num-4
 
-  # Plant Watering Times
-#  p1_time: "1 min"
-#  p2_time: "1 min"
-#  p3_time: "1 min"
-#  p4_time: "1 min"
-
   name: "pwc${pwc_num}"
   friendly_name: "Plant Watering Controller ${pwc_num}"
   version: "0.6"
@@ -47,50 +41,6 @@ switch:
       number: GPIO23
     name: LED
     id: led
-  # - platform: gpio
-  #   pin: 
-  #     number: GPIO32
-  #   name: $plant1 Watering
-  #   id: Plant1_Relay
-  #   icon: "mdi:water"
-  #   on_turn_on:
-  #   - logger.log: "${plant1} Pump Turned On!"
-  #   - delay: $p1_time
-  #   - switch.turn_off: Plant1_Relay
-  #   - logger.log: "${plant1} Pump Turned Off!"
-  # - platform: gpio
-  #   pin: 
-  #     number: GPIO33
-  #   name: $plant2 Watering
-  #   id: Plant2_Relay
-  #   icon: "mdi:water"
-  #   on_turn_on:
-  #     - logger.log: "${plant2} Pump Turned On!"
-  #     - delay: $p2_time
-  #     - switch.turn_off: Plant2_Relay
-  #     - logger.log: "${plant2} Pump Turned Off!"
-  # - platform: gpio
-  #   pin: 
-  #     number: GPIO25
-  #   name: $plant3 Watering
-  #   id: Plant3_Relay
-  #   icon: "mdi:water"
-  #   on_turn_on:
-  #   - logger.log: "${plant3} Pump Turned On!"
-  #   - delay: $p3_time
-  #   - switch.turn_off: Plant3_Relay
-  #   - logger.log: "${plant3} Pump Turned Off!"
-  # - platform: gpio
-  #   pin: 
-  #     number: GPIO26
-  #   name: $plant4 Watering
-  #   id: Plant4_Relay    
-  #   icon: "mdi:water"
-  #   on_turn_on:
-  #   - logger.log: "${plant4} Pump Turned On!"
-  #   - delay: $p4_time
-  #   - switch.turn_off: Plant4_Relay
-  #   - logger.log: "${plant4} Pump Turned Off!"
 
 sensor:
   - platform: internal_temperature
@@ -99,26 +49,10 @@ sensor:
     name: Uptime
   - platform: wifi_signal
     name: WiFi Signal dB
-  # - platform: adc
-  #   pin: GPIO34
-  #   name: $plant1 Moisture
-  #   update_interval: 30s
-  # - platform: adc
-  #   pin: GPIO35
-  #   name: $plant2 Moisture
-  #   update_interval: 30s
-  # - platform: adc
-  #   pin: GPIO36
-  #   name: $plant3 Moisture
-  #   update_interval: 30s
-  # - platform: adc
-  #   pin: GPIO39
-  #   name: $plant4 Moisture
-  #   update_interval: 30s
+
 time:
   - platform: homeassistant
     id: homeassistant_time
-
 
 packages:
   plant1_relay: !include
@@ -127,7 +61,6 @@ packages:
         plant_name: ${plant1}
         watering_gpio: GPIO32
         moisture_sensor_gpio: GPIO34
-#        watering_time: $p1_time
         plant_num: 1
   plant2_relay: !include
       file: plant.yaml
@@ -135,7 +68,6 @@ packages:
         plant_name: ${plant2}
         watering_gpio: GPIO33
         moisture_sensor_gpio: GPIO35
-#        watering_time: $p2_time
         plant_num: 2
   plant3_relay: !include
       file: plant.yaml
@@ -143,13 +75,11 @@ packages:
         plant_name: ${plant3}
         watering_gpio: GPIO25
         moisture_sensor_gpio: GPIO36
-#        watering_time: $p3_time
         plant_num: 3
   plant4_relay: !include
       file: plant.yaml
       vars:
         plant_name: ${plant4}
         watering_gpio: GPIO26
-        moisture_sensor_gpio: GPIO39
-#        watering_time: $p4_time
+        moisture_sensor_gpio: GPIO39        
         plant_num: 4
