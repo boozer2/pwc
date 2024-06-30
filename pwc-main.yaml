@@ -83,3 +83,34 @@ packages:
         watering_gpio: GPIO26
         moisture_sensor_gpio: GPIO39        
         plant_num: 4
+
+sprinkler:
+  - id: lawn_sprinkler_ctrlr
+    main_switch: "Lawn Sprinklers"
+    auto_advance_switch: "Lawn Sprinklers Auto Advance"
+    reverse_switch: "Lawn Sprinklers Reverse"
+    multiplier_number: "Lawn Sprinkler Multiplier"
+    repeat_number: "Lawn Sprinkler Repeat"
+    # valve_overlap: 5s
+    valves:
+      - valve_switch: "Front Lawn"
+        enable_switch: "Enable Front Lawn"
+        run_duration_number: 
+          name: "Front Yard Run Duration"
+          platform: copy
+          source_id: p1_water_time
+        valve_switch_id: p1_relay
+      - valve_switch: "Side Lawn"
+        enable_switch: "Enable Side Lawn"
+        run_duration_number: 
+          name: "Side Lawn Run Duration"
+          platform: copy
+          source_id: p2_water_time
+        valve_switch_id: p2_relay
+      - valve_switch: "Back Lawn"
+        enable_switch: "Enable Back Lawn"
+        run_duration_number: 
+          name: "Back Lawn Run Duration"
+          platform: copy
+          source_id: p3_water_time
+        valve_switch_id: p3_relay
