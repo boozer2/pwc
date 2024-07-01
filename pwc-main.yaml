@@ -95,13 +95,13 @@ sprinkler:
     valves:
       - valve_switch: "Front Lawn"
         enable_switch: "Enable Front Lawn"
-        run_duration_number: "${plant1} Watering Time"
+        run_duration_number: "${plant1_name} Watering Time"
         valve_switch_id: p1_relay
       - valve_switch: "Side Lawn"
         enable_switch: "Enable Side Lawn"
-        run_duration_number: "${plant2} Watering Time"
+        run_duration_number: "${plant2_name} Watering Time"
         valve_switch_id: p2_relay
       - valve_switch: "Back Lawn"
         enable_switch: "Enable Back Lawn"
-        run_duration_number: "${plant3} Watering Time"
+        run_duration_number: "${plant3_name} Watering Time"
         valve_switch_id: p3_relay
