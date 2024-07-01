@@ -51,8 +51,11 @@ switch:
     name: Full Watering Cycle
     id: pwc${pwc_num}_watering_cycle
     icon: "mdi:water"
-    optimistic: True
+    # optimistic: True
     turn_on_action:
+      - switch.template.publish:
+          id: pwc${pwc_num}_watering_cycle
+          state: ON
       - logger.log: "PWC${pwc_num} Watering Cycle Starting"
       - script.execute: water_plant_1
       - script.wait: water_plant_1
@@ -107,7 +110,10 @@ switch:
       #       - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant4_name} to finish watering!"
       #       - switch.turn_off: p4_watering
       - logger.log: "PWC${pwc_num} Watering Cycle Completed"
-      - switch.turn_off: pwc${pwc_num}_watering_cycle
+      # - switch.turn_off: pwc${pwc_num}_watering_cycle
+      - switch.template.publish:
+          id: pwc${pwc_num}_watering_cycle
+          state: OFF
       - lambda: |-
           id(pwc${pwc_num}_watering_cycle_completed_time).publish_state(id(homeassistant_time).now().timestamp);
     turn_off_action:
@@ -120,6 +126,9 @@ switch:
       - switch.turn_off: p3_watering
       - switch.turn_off: p4_watering
       - logger.log: "PWC${pwc_num} Watering Manually Stopped"
+      - switch.template.publish:
+          id: pwc${pwc_num}_watering_cycle
+          state: OFF
 
 sensor:
   - platform: internal_temperature

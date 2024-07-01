@@ -44,27 +44,39 @@ switch:
     name: ${plant_name} Watering
     id: p${plant_num}_watering
     icon: "mdi:water"
-    optimistic: True
+    # optimistic: True
     turn_on_action:
       - if:
           condition:
             switch.is_on: p${plant_num}_watering_enabled
           then:
+            - switch.template.publish:
+                id: p${plant_num}_watering
+                state: ON
             - logger.log: "${plant_name} Watering Starting"
             - switch.turn_on: p${plant_num}_relay
             - delay: !lambda "return id(p${plant_num}_water_duration).state * 1000;"
             - switch.turn_off: p${plant_num}_relay
             - logger.log: "${plant_name} Watering Completed"
-            - switch.turn_off: p${plant_num}_watering
+            # - switch.turn_off: p${plant_num}_watering
+            - switch.template.publish:
+                id: p${plant_num}_watering
+                state: OFF
             - lambda: |-
                 id(p${plant_num}_watering_completed_time).publish_state(id(homeassistant_time).now().timestamp);
           else:
             - logger.log: "${plant_name} watering requested, but is disabled. Ignoring."
             - switch.turn_off: p${plant_num}_relay
-            - switch.turn_off: p${plant_num}_watering
+            - switch.template.publish:
+                id: p${plant_num}_watering
+                state: OFF
+            # - switch.turn_off: p${plant_num}_watering
     turn_off_action:
       - switch.turn_off: p${plant_num}_relay
       - logger.log: "${plant_name} Watering Manually Stopped"
+      - switch.template.publish:
+          id: p${plant_num}_watering
+          state: OFF
 
 sensor:
   - platform: adc
