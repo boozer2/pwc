@@ -47,7 +47,7 @@ sensor:
 #     initial_value: 60
     
 sprinkler:
-  - id: pwc
+  - id: !extend pwc
     valves:
       - valve_switch: "${plant_name}"
         enable_switch: "Enable ${plant_name}"
