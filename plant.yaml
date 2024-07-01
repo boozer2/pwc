@@ -86,6 +86,7 @@ sensor:
   - platform: template
     name: "${plant_name} Watering Completion Time"
     device_class: timestamp
+    restore_value: True
     id: p${plant_num}_watering_completed_time
 
 
