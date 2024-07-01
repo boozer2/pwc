@@ -95,7 +95,9 @@ sprinkler:
     valves:
       - valve_switch: "Front Lawn"
         enable_switch: "Enable Front Lawn"
-        run_duration_number: "${plant1_name} Watering Time"
+        run_duration_number: 
+          name: "${plant1_name} Watering Time"
+          id: p1_water_time
         valve_switch_id: p1_relay
       - valve_switch: "Side Lawn"
         enable_switch: "Enable Side Lawn"
