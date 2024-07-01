@@ -30,6 +30,7 @@ switch:
     name: ${plant_name} Watering
     id: p${plant_num}_watering
     icon: "mdi:water"
+    optimistic: True
     turn_on_action:
       - logger.log: "${plant_name} Watering Starting"
       - switch.turn_on: p${plant_num}_relay

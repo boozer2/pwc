@@ -10,7 +10,7 @@ substitutions:
   name: "pwc${pwc_num}"
   friendly_name: "Plant Watering Controller ${pwc_num}"
   version: "0.6"
-  zone_timeout: 3600s
+  zone_timeout: "3600s"
   
 esphome:
   name: "${name}"
@@ -47,6 +47,7 @@ switch:
     name: PWC${pwc_num} Watering Cycle
     id: pwc${pwc_num}_watering
     icon: "mdi:water"
+    optimistic: True
     turn_on_action:
       - logger.log: "PWC${pwc_num} Watering Cycle Starting"
       - switch.turn_on: p1_watering
@@ -54,7 +55,6 @@ switch:
           condition:
             switch.is_off: p1_watering
           timeout: ${zone_timeout}
-          # if feature request #1790 is completed, below if statements can be changed to timeout action
       - if:
           condition:
             switch.is_on: p1_watering
@@ -113,6 +113,9 @@ sensor:
 time:
   - platform: homeassistant
     id: homeassistant_time
+    on_time_sync:
+      then:
+        - logger.log: "Synchronized system clock"
 
 packages:
   plant1: !include
