@@ -37,6 +37,11 @@ wifi:
 captive_portal:
     
 switch:
+  - platform: restart
+    name: "Reboot Device"
+    disabled_by_default: True
+    entity_category: diagnostic
+    
   - platform: gpio
     pin:
       number: GPIO23
