@@ -3,10 +3,10 @@ substitutions:
   pwc_num: "0"
 
   # Plant Names
-  plant1: Plant $pwc_num-1
-  plant2: Plant $pwc_num-2
-  plant3: Plant $pwc_num-3
-  plant4: Plant $pwc_num-4
+  plant1_name: Plant $pwc_num-1
+  plant2_name: Plant $pwc_num-2
+  plant3_name: Plant $pwc_num-3
+  plant4_name: Plant $pwc_num-4
 
 packages:
   pwc: 

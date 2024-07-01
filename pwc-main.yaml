@@ -2,10 +2,10 @@ substitutions:
 #  pwc_num: "0"
 
   # Plant Names
-#  plant1: Plant $pwc_num-1
-#  plant2: Plant $pwc_num-2
-#  plant3: Plant $pwc_num-3
-#  plant4: Plant $pwc_num-4
+#  plant1_name: Plant $pwc_num-1
+#  plant2_name: Plant $pwc_num-2
+#  plant3_name: Plant $pwc_num-3
+#  plant4_name: Plant $pwc_num-4
 
   name: "pwc${pwc_num}"
   friendly_name: "Plant Watering Controller ${pwc_num}"
@@ -55,31 +55,31 @@ time:
     id: homeassistant_time
 
 packages:
-  plant1_relay: !include
+  plant1: !include
       file: plant.yaml
       vars:
-        plant_name: ${plant1}
+        plant_name: ${plant1_name}
         watering_gpio: GPIO32
         moisture_sensor_gpio: GPIO34
         plant_num: 1
-  plant2_relay: !include
+  plant2: !include
       file: plant.yaml
       vars:
-        plant_name: ${plant2}
+        plant_name: ${plant2_name}
         watering_gpio: GPIO33
         moisture_sensor_gpio: GPIO35
         plant_num: 2
-  plant3_relay: !include
+  plant3: !include
       file: plant.yaml
       vars:
-        plant_name: ${plant3}
+        plant_name: ${plant3_name}
         watering_gpio: GPIO25
         moisture_sensor_gpio: GPIO36
         plant_num: 3
-  plant4_relay: !include
+  plant4: !include
       file: plant.yaml
       vars:
-        plant_name: ${plant4}
+        plant_name: ${plant4_name}
         watering_gpio: GPIO26
         moisture_sensor_gpio: GPIO39        
         plant_num: 4
