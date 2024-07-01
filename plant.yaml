@@ -39,7 +39,7 @@ switch:
     name: ${plant_name} Watering Enabled
     id: p${plant_num}_watering_enabled
     optimistic: True
-    restore_state: True
+    restore_mode: RESTORE_DEFAULT_ON
   - platform: template
     name: ${plant_name} Watering
     id: p${plant_num}_watering
