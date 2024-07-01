@@ -2,12 +2,11 @@
 #plant_name
 #plant_num
 #watering_gpio
-#watering_time
 #moisture_sensor_gpio
 
 substitutions:
-  min_water_time: "1"
-  max_water_time: "3600"
+  min_water_duration: "1"
+  max_water_duration: "3600"
   moisture_update_interval: 30s
 
 defaults:
@@ -21,7 +20,7 @@ script:
       - wait_until:
           condition:
             switch.is_off: p${plant_num}_watering
-          timeout: "${max_water_time}s"
+          timeout: "${max_water_duration}s"
       - if:
           condition:
             switch.is_on: p${plant_num}_watering
@@ -53,10 +52,12 @@ switch:
           then:
             - logger.log: "${plant_name} Watering Starting"
             - switch.turn_on: p${plant_num}_relay
-            - delay: !lambda "return id(p${plant_num}_water_time).state * 1000;"
+            - delay: !lambda "return id(p${plant_num}_water_duration).state * 1000;"
             - switch.turn_off: p${plant_num}_relay
             - logger.log: "${plant_name} Watering Completed"
             - switch.turn_off: p${plant_num}_watering
+            - lambda: |-
+                id(p${plant_num}_watering_completed_time).publish_state(id(homeassistant_time).now().timestamp);
           else:
             - logger.log: "${plant_name} watering requested, but is disabled. Ignoring."
             - switch.turn_off: p${plant_num}_relay
@@ -70,16 +71,21 @@ sensor:
     pin: ${moisture_sensor_gpio}
     name: ${plant_name} Moisture
     update_interval: ${moisture_update_interval}
+  - platform: template
+    name: "${plant_name} Watering Completion Time"
+    device_class: timestamp
+    id: p${plant_num}_watering_completed_time
+
 
 number:
   - platform: template
-    name: "${plant_name} Watering Time"
-    id: p${plant_num}_water_time
+    name: "${plant_name} Watering Duration"
+    id: p${plant_num}_water_duration
     icon: "mdi:timer"
     entity_category: config
     unit_of_measurement: "sec"
-    min_value: $min_water_time
-    max_value: $max_water_time
+    min_value: $min_water_duration
+    max_value: $max_water_duration
     step: 1
     optimistic: True
     restore_value: True
