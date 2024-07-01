@@ -40,13 +40,13 @@ switch:
   - platform: restart
     name: "Reboot Device"
     disabled_by_default: True
-    entity_category: "diagnostic"
+    entity_category: diagnostic
   - platform: gpio
     pin:
       number: GPIO23
     name: LED
     id: led
-    entity_category: "diagnostic"
+    entity_category: diagnostic
   - platform: template
     name: Full Watering Cycle
     id: pwc${pwc_num}_watering_cycle

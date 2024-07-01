@@ -18,14 +18,7 @@ switch:
     internal: True
     pin: 
       number: ${watering_gpio}
-    # name: ${plant_name} Watering
     id: p${plant_num}_relay
-    # icon: "mdi:water"
-    # on_turn_on:
-    # - logger.log: "${plant_name} Pump Turned On!"
-    # - delay: !lambda "return id(p${plant_num}_water_time).state * 1000;"
-    # - switch.turn_off: p${plant_num}_relay
-    # - logger.log: "${plant_name} Pump Turned Off!"
   - platform: template
     name: ${plant_name} Watering
     id: p${plant_num}_watering
