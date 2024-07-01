@@ -10,6 +10,7 @@ substitutions:
   name: "pwc${pwc_num}"
   friendly_name: "Plant Watering Controller ${pwc_num}"
   version: "0.6"
+  zone_timeout: 3600s
   
 esphome:
   name: "${name}"
@@ -41,6 +42,65 @@ switch:
       number: GPIO23
     name: LED
     id: led
+
+  - platform: template
+    name: PWC${pwc_num} Watering Cycle
+    id: pwc${pwc_num}_watering
+    icon: "mdi:water"
+    turn_on_action:
+      - logger.log: "PWC${pwc_num} Watering Cycle Starting"
+      - switch.turn_on: p1_watering
+      - wait_until:
+          condition:
+            switch.is_off: p1_watering
+          timeout: ${zone_timeout}
+          # if feature request #1790 is completed, below if statements can be changed to timeout action
+      - if:
+          condition:
+            switch.is_on: p1_watering
+          then:
+            - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant1_name} to finish watering!"
+            - switch.turn_off: p1_watering
+      - switch.turn_on: p2_watering
+      - wait_until:
+          condition:
+            switch.is_off: p2_watering
+          timeout: ${zone_timeout}
+      - if:
+          condition:
+            switch.is_on: p2_watering
+          then:
+            - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant2_name} to finish watering!"
+            - switch.turn_off: p2_watering
+      - switch.turn_on: p3_watering
+      - wait_until:
+          condition:
+            switch.is_off: p3_watering
+          timeout: ${zone_timeout}
+      - if:
+          condition:
+            switch.is_on: p3_watering
+          then:
+            - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant3_name} to finish watering!"
+            - switch.turn_off: p3_watering
+      - switch.turn_on: p4_watering
+      - wait_until:
+          condition:
+            switch.is_off: p4_watering
+          timeout: ${zone_timeout}
+      - if:
+          condition:
+            switch.is_on: p4_watering
+          then:
+            - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant4_name} to finish watering!"
+            - switch.turn_off: p4_watering
+      - logger.log: "PWC${pwc_num} Watering Cycle Completed"
+    turn_off_action:
+      - switch.turn_off: p1_watering
+      - switch.turn_off: p2_watering
+      - switch.turn_off: p3_watering
+      - switch.turn_off: p4_watering
+      - logger.log: "${plant_name} Watering Manually Stopped"
 
 sensor:
   - platform: internal_temperature
