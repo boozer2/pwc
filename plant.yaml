@@ -40,6 +40,7 @@ switch:
     id: p${plant_num}_watering_enabled
     optimistic: True
     restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
   - platform: template
     name: ${plant_name} Watering
     id: p${plant_num}_watering
