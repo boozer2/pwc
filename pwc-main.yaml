@@ -55,9 +55,13 @@ switch:
     turn_on_action:
       - logger.log: "PWC${pwc_num} Watering Cycle Starting"
       - script.execute: water_plant_1
+      - script.wait: water_plant_1
       - script.execute: water_plant_2
+      - script.wait: water_plant_2
       - script.execute: water_plant_3
+      - script.wait: water_plant_3
       - script.execute: water_plant_4
+      - script.wait: water_plant_4
       # - switch.turn_on: p1_watering
       # - wait_until:
       #     condition:
