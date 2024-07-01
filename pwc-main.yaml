@@ -100,7 +100,7 @@ switch:
       - switch.turn_off: p2_watering
       - switch.turn_off: p3_watering
       - switch.turn_off: p4_watering
-      - logger.log: "${plant_name} Watering Manually Stopped"
+      - logger.log: "PWC${pwc_num} Watering Manually Stopped"
 
 sensor:
   - platform: internal_temperature
