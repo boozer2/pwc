@@ -60,6 +60,7 @@ switch:
           else:
             - logger.log: "${plant_name} watering requested, but is disabled. Ignoring."
             - switch.turn_off: p${plant_num}_relay
+            - switch.turn_off: p${plant_num}_watering
     turn_off_action:
       - switch.turn_off: p${plant_num}_relay
       - logger.log: "${plant_name} Watering Manually Stopped"
