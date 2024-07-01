@@ -140,7 +140,6 @@ sensor:
   - platform: template
     name: "PWC${pwc_num} Watering Completion Time"
     device_class: timestamp
-    restore_value: True
     id: pwc${pwc_num}_watering_cycle_completed_time
 
 time:
