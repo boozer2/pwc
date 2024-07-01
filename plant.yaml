@@ -32,17 +32,26 @@ sensor:
     name: ${plant_name} Moisture
     update_interval: ${moisture_update_interval}
 
-number:
-  - platform: template
-    name: "${plant_name} Watering Time"
-    id: p${plant_num}_water_time
-    icon: "mdi:timer"
-    entity_category: config
-    unit_of_measurement: "sec"
-    min_value: $min_water_time
-    max_value: $max_water_time
-    step: 1
-    optimistic: True
-    restore_value: True
-    initial_value: 60
+# number:
+#   - platform: template
+#     name: "${plant_name} Watering Time"
+#     id: p${plant_num}_water_time
+#     icon: "mdi:timer"
+#     entity_category: config
+#     unit_of_measurement: "sec"
+#     min_value: $min_water_time
+#     max_value: $max_water_time
+#     step: 1
+#     optimistic: True
+#     restore_value: True
+#     initial_value: 60
     
+sprinkler:
+  - id: pwc
+    valves:
+      - valve_switch: "${plant_name}"
+        enable_switch: "Enable ${plant_name}"
+        run_duration_number: 
+          name: "${plant_name} Watering Time"
+          id: p${plant_num}_water_time
+        valve_switch_id: p${plant_num}_relay
