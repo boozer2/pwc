@@ -13,6 +13,22 @@ substitutions:
 defaults:
   plant_name: Plant $pwc_num-$plant_num
 
+
+script:
+  - id: water_plant_${plant_num}
+    then:
+      - switch.turn_on: p${plant_num}_watering
+      - wait_until:
+          condition:
+            switch.is_off: p${plant_num}_watering
+          timeout: "${max_water_time}s"
+      - if:
+          condition:
+            switch.is_on: p${plant_num}_watering
+          then:
+            - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant_name} to finish watering!"
+            - switch.turn_off: p${plant_num}_watering
+
 switch:
   - platform: gpio
     internal: True
