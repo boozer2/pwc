@@ -37,6 +37,7 @@ switch:
       - delay: !lambda "return id(p${plant_num}_water_time).state * 1000;"
       - switch.turn_off: p${plant_num}_relay
       - logger.log: "${plant_name} Watering Completed"
+      - switch.turn_off: p${plant_num}_watering
     turn_off_action:
       - switch.turn_off: p${plant_num}_relay
       - logger.log: "${plant_name} Watering Manually Stopped"

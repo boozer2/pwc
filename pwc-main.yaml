@@ -45,7 +45,7 @@ switch:
 
   - platform: template
     name: PWC${pwc_num} Watering Cycle
-    id: pwc${pwc_num}_watering
+    id: pwc${pwc_num}_watering_cycle
     icon: "mdi:water"
     optimistic: True
     turn_on_action:
@@ -95,6 +95,7 @@ switch:
             - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant4_name} to finish watering!"
             - switch.turn_off: p4_watering
       - logger.log: "PWC${pwc_num} Watering Cycle Completed"
+      - switch.turn_off: pwc${pwc_num}_watering_cycle
     turn_off_action:
       - switch.turn_off: p1_watering
       - switch.turn_off: p2_watering
