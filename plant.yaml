@@ -36,17 +36,29 @@ switch:
       number: ${watering_gpio}
     id: p${plant_num}_relay
   - platform: template
+    name: ${plant_name} Watering Enabled
+    id: p${plant_num}_watering_enabled
+    optimistic: True
+    restore_value: True
+  - platform: template
     name: ${plant_name} Watering
     id: p${plant_num}_watering
     icon: "mdi:water"
     optimistic: True
     turn_on_action:
-      - logger.log: "${plant_name} Watering Starting"
-      - switch.turn_on: p${plant_num}_relay
-      - delay: !lambda "return id(p${plant_num}_water_time).state * 1000;"
-      - switch.turn_off: p${plant_num}_relay
-      - logger.log: "${plant_name} Watering Completed"
-      - switch.turn_off: p${plant_num}_watering
+      - if:
+          condition:
+            switch.is_on: p${plant_num}_watering_enabled
+          then:
+            - logger.log: "${plant_name} Watering Starting"
+            - switch.turn_on: p${plant_num}_relay
+            - delay: !lambda "return id(p${plant_num}_water_time).state * 1000;"
+            - switch.turn_off: p${plant_num}_relay
+            - logger.log: "${plant_name} Watering Completed"
+            - switch.turn_off: p${plant_num}_watering
+          else:
+            - logger.log: "${plant_name} watering requested, but is disabled. Ignoring."
+            - switch.turn_off: p${plant_num}_relay
     turn_off_action:
       - switch.turn_off: p${plant_num}_relay
       - logger.log: "${plant_name} Watering Manually Stopped"
