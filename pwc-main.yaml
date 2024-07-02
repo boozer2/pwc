@@ -115,7 +115,7 @@ switch:
           id: pwc${pwc_num}_watering_cycle
           state: OFF
       - lambda: |-
-          id(pwc${pwc_num}_watering_cycle_completed_time).publish_state(id(homeassistant_time).now().timestamp.strftime("%Y-%m-%dT%H:%M:%S+00:00"));
+          id(pwc${pwc_num}_watering_cycle_completed_time).publish_state(ESPTime::from_epoch_utc(id(homeassistant_time).now().timestamp).strftime("%Y-%m-%dT%H:%M:%S+00:00"));
     turn_off_action:
       - script.stop: water_plant_1
       - script.stop: water_plant_2

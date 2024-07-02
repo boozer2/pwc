@@ -63,7 +63,7 @@ switch:
                 id: p${plant_num}_watering
                 state: OFF
             - lambda: |-
-                id(p${plant_num}_watering_completed_time).publish_state(id(homeassistant_time).now().timestamp.strftime("%Y-%m-%dT%H:%M:%S+00:00");
+                id(p${plant_num}_watering_completed_time).publish_state(ESPTime::from_epoch_utc(id(homeassistant_time).now().timestamp).strftime("%Y-%m-%dT%H:%M:%S+00:00");
           else:
             - logger.log: "${plant_name} watering requested, but is disabled. Ignoring."
             - switch.turn_off: p${plant_num}_relay
