@@ -51,7 +51,6 @@ switch:
     name: Full Watering Cycle
     id: pwc${pwc_num}_watering_cycle
     icon: "mdi:water"
-    # optimistic: True
     turn_on_action:
       - switch.template.publish:
           id: pwc${pwc_num}_watering_cycle
@@ -65,52 +64,7 @@ switch:
       - script.wait: water_plant_3
       - script.execute: water_plant_4
       - script.wait: water_plant_4
-      # - switch.turn_on: p1_watering
-      # - wait_until:
-      #     condition:
-      #       switch.is_off: p1_watering
-      #     timeout: ${zone_timeout}
-      # - if:
-      #     condition:
-      #       switch.is_on: p1_watering
-      #     then:
-      #       - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant1_name} to finish watering!"
-      #       - switch.turn_off: p1_watering
-      # - switch.turn_on: p2_watering
-      # - wait_until:
-      #     condition:
-      #       switch.is_off: p2_watering
-      #     timeout: ${zone_timeout}
-      # - if:
-      #     condition:
-      #       switch.is_on: p2_watering
-      #     then:
-      #       - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant2_name} to finish watering!"
-      #       - switch.turn_off: p2_watering
-      # - switch.turn_on: p3_watering
-      # - wait_until:
-      #     condition:
-      #       switch.is_off: p3_watering
-      #     timeout: ${zone_timeout}
-      # - if:
-      #     condition:
-      #       switch.is_on: p3_watering
-      #     then:
-      #       - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant3_name} to finish watering!"
-      #       - switch.turn_off: p3_watering
-      # - switch.turn_on: p4_watering
-      # - wait_until:
-      #     condition:
-      #       switch.is_off: p4_watering
-      #     timeout: ${zone_timeout}
-      # - if:
-      #     condition:
-      #       switch.is_on: p4_watering
-      #     then:
-      #       - logger.log: "PWC${pwc_num} Timeout Waiting for ${plant4_name} to finish watering!"
-      #       - switch.turn_off: p4_watering
       - logger.log: "PWC${pwc_num} Watering Cycle Completed"
-      # - switch.turn_off: pwc${pwc_num}_watering_cycle
       - switch.template.publish:
           id: pwc${pwc_num}_watering_cycle
           state: OFF
@@ -137,10 +91,6 @@ sensor:
     name: Uptime
   - platform: wifi_signal
     name: WiFi Signal dB
-  # - platform: template
-  #   name: "PWC${pwc_num} Watering Completion Time"
-  #   device_class: timestamp
-  #   id: pwc${pwc_num}_watering_cycle_completed_time
 
 text_sensor:
   - platform: template

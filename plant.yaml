@@ -44,7 +44,6 @@ switch:
     name: ${plant_name} Watering
     id: p${plant_num}_watering
     icon: "mdi:water"
-    # optimistic: True
     turn_on_action:
       - if:
           condition:
@@ -58,7 +57,6 @@ switch:
             - delay: !lambda "return id(p${plant_num}_water_duration).state * 1000;"
             - switch.turn_off: p${plant_num}_relay
             - logger.log: "${plant_name} Watering Completed"
-            # - switch.turn_off: p${plant_num}_watering
             - switch.template.publish:
                 id: p${plant_num}_watering
                 state: OFF
@@ -70,7 +68,6 @@ switch:
             - switch.template.publish:
                 id: p${plant_num}_watering
                 state: OFF
-            # - switch.turn_off: p${plant_num}_watering
     turn_off_action:
       - switch.turn_off: p${plant_num}_relay
       - logger.log: "${plant_name} Watering Manually Stopped"
@@ -83,10 +80,6 @@ sensor:
     pin: ${moisture_sensor_gpio}
     name: ${plant_name} Moisture
     update_interval: ${moisture_update_interval}
-  # - platform: template
-  #   name: "${plant_name} Watering Completion Time"
-  #   device_class: timestamp
-  #   id: p${plant_num}_watering_completed_time
 
 text_sensor:
   - platform: template
