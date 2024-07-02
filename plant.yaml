@@ -63,7 +63,7 @@ switch:
                 id: p${plant_num}_watering
                 state: OFF
             - lambda: |-
-                id(p${plant_num}_watering_completed_time).publish_state(id(homeassistant_time).now().timestamp);
+                id(p${plant_num}_watering_completed_time).publish_state(id(homeassistant_time).now().timestamp.strftime("%Y-%m-%dT%H:%M:%S+00:00");
           else:
             - logger.log: "${plant_name} watering requested, but is disabled. Ignoring."
             - switch.turn_off: p${plant_num}_relay
@@ -83,11 +83,16 @@ sensor:
     pin: ${moisture_sensor_gpio}
     name: ${plant_name} Moisture
     update_interval: ${moisture_update_interval}
+  # - platform: template
+  #   name: "${plant_name} Watering Completion Time"
+  #   device_class: timestamp
+  #   id: p${plant_num}_watering_completed_time
+
+text_sensor:
   - platform: template
     name: "${plant_name} Watering Completion Time"
     device_class: timestamp
     id: p${plant_num}_watering_completed_time
-
 
 number:
   - platform: template
